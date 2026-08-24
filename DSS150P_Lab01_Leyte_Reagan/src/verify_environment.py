@@ -1,0 +1,12 @@
+from sqlalchemy import create_engine, text
+
+engine = create_engine(
+    "postgresql+psycopg2://dss150p:dss150p_lab@localhost:5432/dss150p_lab"
+)
+
+with engine.connect() as conn:
+    print("PostgreSQL Version:")
+    print(conn.execute(text("SELECT version();")).scalar())
+    print("\nCurrent Database:")
+    print(conn.execute(text("SELECT current_database();")).scalar())
+    
